@@ -288,7 +288,13 @@ namespace ELFSharp.ELF
             TryGetSection(Consts.ObjectsStringTableName, out Section<T> section);
             objectsStringTable = (StringTable<T>)section;
             TryGetSection(Consts.DynamicStringTableName, out section);
-            dynamicStringTable = (StringTable<T>)section;
+            try
+            {
+                dynamicStringTable = (StringTable<T>)section;
+            }
+            catch
+            {
+            }
         }
 
         private void ReadStringTable()
